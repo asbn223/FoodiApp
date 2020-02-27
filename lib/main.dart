@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodi_app/screens/category_meal_screen.dart';
+import 'package:foodi_app/screens/meal_details_screen.dart';
 
 import 'screens/categories_overview_screen.dart';
 
@@ -33,7 +34,13 @@ class MyApp extends StatelessWidget {
                   fontSize: 18),
             ),
       ),
-      routes: {CategoryMealScreen.routeName: (context) => CategoryMealScreen()},
+      routes: {
+        CategoryMealScreen.routeName: (context) => CategoryMealScreen(),
+        MealDetailScreen.routeName: (context) => MealDetailScreen()
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (ctx) => CategoryOverviewScreen());
+      },
     );
   }
 }

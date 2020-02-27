@@ -16,6 +16,7 @@ class CategoryOverviewScreen extends StatelessWidget {
           return CategoryItem(
             color: catData.color,
             title: catData.title,
+            id: catData.id,
           );
         }).toList(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
