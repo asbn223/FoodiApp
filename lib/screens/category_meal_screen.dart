@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodi_app/dummy_data.dart';
+import 'package:foodi_app/widgets/main_drawer.dart';
 import 'package:foodi_app/widgets/meal_items.dart';
 
 class CategoryMealScreen extends StatelessWidget {
@@ -20,10 +21,12 @@ class CategoryMealScreen extends StatelessWidget {
         .where((meal) => meal.categories.contains(categoryId))
         .toList();
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(categoryTitle),
         backgroundColor: categoryColor,
       ),
+      drawer: MainDrawer(),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodi_app/screens/bottom_bar_screen.dart';
 import 'package:foodi_app/screens/category_meal_screen.dart';
+import 'package:foodi_app/screens/filters_screen.dart';
 import 'package:foodi_app/screens/meal_details_screen.dart';
-
-import 'screens/categories_overview_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Foodi",
-      home: CategoryOverviewScreen(),
+      home: BottomBarScreen(),
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.brown,
@@ -33,13 +33,24 @@ class MyApp extends StatelessWidget {
                   fontFamily: "Simonetta",
                   fontSize: 18),
             ),
+        appBarTheme: ThemeData.light().appBarTheme.copyWith(
+              textTheme: TextTheme(
+                title: TextStyle(
+//                  color: Color.fromRGBO(20, 51, 51, 1),
+                    color: Colors.white70,
+                    fontFamily: "Simonetta",
+                    fontSize: 20),
+              ),
+            ),
       ),
       routes: {
         CategoryMealScreen.routeName: (context) => CategoryMealScreen(),
-        MealDetailScreen.routeName: (context) => MealDetailScreen()
+        MealDetailScreen.routeName: (context) => MealDetailScreen(),
+        BottomBarScreen.routeName: (context) => BottomBarScreen(),
+        FilterScreen.routeName: (context) => FilterScreen(),
       },
       onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (ctx) => CategoryOverviewScreen());
+        return MaterialPageRoute(builder: (ctx) => BottomBarScreen());
       },
     );
   }
