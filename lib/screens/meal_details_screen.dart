@@ -5,6 +5,7 @@ import 'package:foodi_app/widgets/main_drawer.dart';
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal_detail_screen';
 
+
   @override
   Widget build(BuildContext context) {
     final id = ModalRoute.of(context).settings.arguments as String;

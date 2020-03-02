@@ -36,8 +36,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         drawer: MainDrawer(),
         body: _pages[_selectedPageIndex]['page'],
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.lime,
-          selectedItemColor: Colors.white70,
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.black,
           unselectedItemColor: Colors.black54,
           selectedFontSize: 16,
           unselectedFontSize: 14,
