@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foodi_app/dummy_data.dart';
-import 'package:foodi_app/widgets/main_drawer.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal_detail_screen';
+  final Function toggleFav, isFavorited;
 
+  MealDetailScreen({this.toggleFav, this.isFavorited});
+//  bool isFav = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,6 @@ class MealDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(selectedMeal.title),
       ),
-      drawer: MainDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -94,6 +95,15 @@ class MealDetailScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          isFavorited(selectedMeal.id) ? Icons.favorite : Icons.favorite_border,
+          color: Colors.red,
+        ),
+        onPressed: () {
+          toggleFav(selectedMeal.id);
+        },
       ),
     );
   }

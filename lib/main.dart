@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
 
   void _setFilter(Map<String, bool> filterData) {
     setState(() {
@@ -45,12 +46,34 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  //For adding and removing favorite meals
+  void _toggleFav(String mealId) {
+    final existingIndex = _favoriteMeals.indexWhere((meal) {
+      return meal.id == mealId;
+    });
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  bool _favoritedMeal(String mealId) {
+    return _favoriteMeals.any((meal) {
+      return meal.id == mealId;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Foodi",
-      home: BottomBarScreen(),
+//      home: BottomBarScreen(),
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.brown,
@@ -80,11 +103,20 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
       ),
+      initialRoute: '/',
       routes: {
+        '/': (context) => BottomBarScreen(
+              favMeals: _favoriteMeals,
+            ),
         CategoryMealScreen.routeName: (context) =>
             CategoryMealScreen(availableMeals: _availableMeals),
-        MealDetailScreen.routeName: (context) => MealDetailScreen(),
-        BottomBarScreen.routeName: (context) => BottomBarScreen(),
+        MealDetailScreen.routeName: (context) => MealDetailScreen(
+              toggleFav: _toggleFav,
+              isFavorited: _favoritedMeal,
+            ),
+        BottomBarScreen.routeName: (context) => BottomBarScreen(
+              favMeals: _favoriteMeals,
+            ),
         FilterScreen.routeName: (context) => FilterScreen(
               setFilter: _setFilter,
               currentFilters: _filter,

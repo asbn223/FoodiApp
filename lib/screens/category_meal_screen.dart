@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodi_app/models/meal.dart';
-import 'package:foodi_app/widgets/main_drawer.dart';
 import 'package:foodi_app/widgets/meal_items.dart';
 
 class CategoryMealScreen extends StatefulWidget {
@@ -46,7 +45,6 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
         title: Text(categoryTitle),
         backgroundColor: categoryColor,
       ),
-      drawer: MainDrawer(),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
